@@ -4,6 +4,7 @@ angular.module('hackaglobalApp')
   .controller('SignupCtrl', function ($scope, Auth, $location) {
     $scope.user = {};
     $scope.errors = {};
+    $scope.mobilePattern = /^09[123][0-9]{8}$/;
 
     $scope.register = function(form) {
       $scope.submitted = true;
@@ -12,6 +13,7 @@ angular.module('hackaglobalApp')
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
+          mobile: $scope.user.mobile,
           password: $scope.user.password
         })
         .then( function() {

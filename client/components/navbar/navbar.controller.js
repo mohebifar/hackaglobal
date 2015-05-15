@@ -3,7 +3,7 @@
 angular.module('hackaglobalApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'خانه',
       'link': '/'
     }];
 

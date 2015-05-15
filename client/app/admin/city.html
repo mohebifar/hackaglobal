@@ -1,0 +1,34 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div ng-include="'components/navbar/navbar-admin.html'"></div>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">افزودن شهر</div>
+
+    <div class="panel-body">
+      <form ng-submit="addCity()">
+        <div class="form-group">
+          <input type="text" class="form-control" name="name" ng-model="city.name" placeholder="نام شهر"/>
+        </div>
+
+        <div class="form-group">
+          <input type="text" class="form-control" name="name" ng-model="city.enName" placeholder="نام شهر به انگلیسی"/>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary"><i class="fa fa-plus"></i> افزودن</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="city in cities">
+      <a ng-click="delete(city)" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+      <a editable-text="city.name" onbeforesave="city.name = $data; city.$update();">{{ city.name || 'empty' }}</a> -
+      <a editable-text="city.enName" onbeforesave="city.enName = $data; city.$update();">{{ city.enName || 'empty'
+        }}</a>
+    </li>
+  </ul>
+</div>

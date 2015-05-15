@@ -6,7 +6,11 @@ angular.module('hackaglobalApp', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'xeditable',
+  'ui.bootstrap.datepicker',
+  'ui.bootstrap.persian.datepicker',
+  'ngPersian'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -28,8 +32,8 @@ angular.module('hackaglobalApp', [
       },
 
       // Intercept 401s and redirect you to login
-      responseError: function(response) {
-        if(response.status === 401) {
+      responseError: function (response) {
+        if (response.status === 401) {
           $location.path('/login');
           // remove any stale tokens
           $cookieStore.remove('token');
@@ -42,10 +46,14 @@ angular.module('hackaglobalApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $location, Auth, editableOptions, editableThemes) {
+    editableThemes.bs3.inputClass = 'input-sm';
+    editableThemes.bs3.buttonsClass = 'btn-sm';
+    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) {
-      Auth.isLoggedInAsync(function(loggedIn) {
+      Auth.isLoggedInAsync(function (loggedIn) {
         if (next.authenticate && !loggedIn) {
           $location.path('/login');
         }

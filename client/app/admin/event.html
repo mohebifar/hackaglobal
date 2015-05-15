@@ -1,0 +1,47 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div ng-include="'components/navbar/navbar-admin.html'"></div>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">افزودن رویداد</div>
+
+    <div class="panel-body">
+      <form ng-submit="addCity()">
+        <div class="form-group">
+          <input type="text" class="form-control" name="name" ng-model="event.name" placeholder="نام رویداد"/>
+        </div>
+        <div class="form-group">
+
+          <div class="input-group">
+            <input type="text" class="form-control" datepicker-popup-persian="{{format}}" ng-model="event.date"
+                   placeholder="تاریخ برگزاری"
+                   is-open="persianIsOpen" datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
+                   ng-required="true" close-text="بسته"/>
+               <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openPersian($event)"><i
+                  class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <select class="form-control" name="city" id="city" ng-model="event.city">
+            <option ng-value="city._id" ng-bind="city.name" ng-repeat="city in cities"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary"><i class="fa fa-plus"></i> افزودن</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="event in events">
+      <a ng-click="delete(event)" class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+       <a editable-text="event.name" onbeforesave="event.name = $data; event.$update();">{{ event.name || 'empty' }}</a>
+      در شهر
+      <a editable-select="event.city" e-ng-options="s._id as s.name for s in cities" onbeforesave="event.city = $data; event.$update();">{{ getCityName(event.city) || 'empty' }}</a>
+    </li>
+  </ul>
+</div>

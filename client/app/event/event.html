@@ -1,0 +1,29 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>هاکا گلوبال</h1>
+    <h2>{{event.city.name}}</h2>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+
+    </div>
+  </div>
+
+
+  <p>{{event.name}}</p>
+
+  <p>{{event.city.name}}</p>
+
+  <p>  برگزاری در تاریخ {{event.date | persianDate:'fullDate' | pNumber}}</p>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>هاکاگلوبال | طراحی شده توسط گروه 110110110102</p>
+  </div>
+</footer>

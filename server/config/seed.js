@@ -30,16 +30,17 @@ Thing.find({}).remove(function() {
   });
 });
 
+/*
 User.find({}).remove(function() {
   User.create({
     provider: 'local',
-    name: 'Test User',
+    name: 'کاربر آزمایشی',
     email: 'test@test.com',
     password: 'test'
   }, {
     provider: 'local',
     role: 'admin',
-    name: 'Admin',
+    name: 'مدیر کل',
     email: 'admin@admin.com',
     password: 'admin'
   }, function() {
@@ -47,3 +48,4 @@ User.find({}).remove(function() {
     }
   );
 });
+*/

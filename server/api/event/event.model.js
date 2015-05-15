@@ -1,12 +1,15 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+  Schema = mongoose.Schema;
 
 var EventSchema = new Schema({
   name: String,
   info: String,
-  active: Boolean
+  active: {type: Boolean, default: true},
+  date: Date,
+  address: String,
+  city: {type: Schema.ObjectId, ref: 'City'}
 });
 
 module.exports = mongoose.model('Event', EventSchema);
